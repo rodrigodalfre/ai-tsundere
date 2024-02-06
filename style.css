@@ -4,6 +4,19 @@
 	padding: 0;
 }
 
+input,
+button,
+select,
+textarea {
+	margin: 0;
+	padding: 0;
+	border: none;
+	outline: none;
+	font-family: inherit;
+	font-size: 100%;
+}
+
+
 body {
 	overflow: hidden;
 	background: #020000;
@@ -15,7 +28,7 @@ body {
 
 p {
 	font-size: 1.9em;
- }
+}
 
 .container {
 	margin: 5px;
@@ -24,41 +37,59 @@ p {
 	flex-direction: column;
 	width: 70%;
 	height: 95vh;
-	border: 2px solid blue;
- }
- 
- .row {
-	display: flex;
-	flex-direction: row; 
-	padding: 0 20px;
- }
+}
 
- .welcome {	
+.row {
+	display: flex;
+	flex-direction: row;
+	padding: 0 20px;
+}
+
+.welcome {
 	margin: -25px 40px;
 	padding: 10px 0;
-	align-self: flex-end;	
+	align-self: flex-end;
 	vertical-align: bottom;
- }
+}
 
- .name {
+.name {
 	display: inline-block;
 	font-size: 1.4em;
 	margin-left: 40px;
- }
+}
 
- .answer {
-	border: 2px solid red;
+.answer {
 	padding: 15px 0 20px 0;
 	line-height: 1.2em;
 	margin: 30px 0;
 }
 
- 		.question {
-			margin: 20px 0;
-			border: 2px solid green;
-			padding: 15px 0;
-			display: inline-flex;
-		}
+.question {
+	margin: 10px 0;
+	color: #ffffff;
+	padding: 15px 0;
+	display: inline-flex;
+	font-size: 2.0em;
+}
+
+.question input {
+	border: 1px solid #020000;
+	width: 250px;
+	color: #fff;
+	background: #020000;
+	vertical-align: top;
+}
+
+.question:before {
+	color: #0081d6;
+	content: '['
+}
+
+.question:after {
+	color: #0081d6;
+	content: ']'
+}
+
 
 .overlay {
 	height: 1px;
@@ -93,4 +124,3 @@ p {
 	left: 0;
 	z-index: 2;
 }
-
