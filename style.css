@@ -17,7 +17,6 @@ textarea {
 }
 
 body {
-	overflow: hidden;
 	background: #020000;
 	color: #0081d6;
 	font-weight: 700;
@@ -39,8 +38,10 @@ p {
 	position: relative;
 	overflow: hidden;
 	opacity: 0;
-	animation: scan 4.5s ease-out forwards;
+	animation: scan 4s ease-out forwards;
 	background: #020000;
+
+	/* Mantenha as outras propriedades conforme necessário */
 }
 
 @keyframes scan {
@@ -67,9 +68,9 @@ p {
 	100% {
 		opacity: 1;
 		clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-	}
+  }
+  
 }
-
 
 .row {
 	display: flex;
@@ -88,6 +89,8 @@ p {
 	display: inline-block;
 	font-size: 1.4em;
 	margin-left: 40px;
+	position: relative;
+	z-index: 1; /* Certifique-se de que os elementos com o efeito tenham um z-index maior que outros elementos */
 }
 
 .answer {
@@ -125,20 +128,8 @@ p {
 .overlay {
 	height: 1px;
 	position: absolute;
-	top: 0;
-	left: 0;
-	right: 0;
-	background: linear-gradient(#0e0e0e 50%, rgba(16, 16, 16, 0.2) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.03));
-	background-size: 100% 3px, 6px 100%;
-	content: "";
-	display: block;
-	pointer-events: none;
-	position: fixed;
-	top: 0;
-	right: 0;
-	bottom: 0;
-	left: 0;
-	z-index: 2;
+	top: 30px;
+	left: 35px;
 }
 
 
@@ -147,16 +138,14 @@ p {
 	background-size: 100% 3px, 6px 100%;
 	content: "";
 	display: block;
-	pointer-events: none;
 	position: fixed;
 	top: 0;
 	right: 0;
 	bottom: 0;
 	left: 0;
 	z-index: 2;
+	pointer-events: none; /* Permite que eventos do mouse ignorem a sobreposição */
 }
-
-
 .overlay:after {
 	background: rgba(16, 16, 16, 0.2);
 	content: "";
