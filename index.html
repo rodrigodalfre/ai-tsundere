@@ -16,7 +16,37 @@
    <div class="overlay">
       <div class="container">
          <div class="row">
-            <img src="images/1.png" width="195px" height="195px" class="image-container">
+            <div class="glitch-container">
+               <img src="" width="195px" height="195px" class="image-container" id="image">
+            </div>
+
+            <script>
+               let currentImage;
+               const imageElement = document.getElementById('image')
+
+               function updateRandomImage() {
+                  let newImage;
+
+                  do {
+                     newImage = Math.floor(Math.random() * 4) + 1;
+                  } while (newImage === currentImage);
+
+                  currentImage = newImage;
+
+                  const imageElement = document.getElementById('image');
+                  imageElement.src = `images/${currentImage}.png`;
+                  imageElement.classList.add('glitch');
+
+                  setTimeout(() => {
+                     imageElement.classList.remove('glitch');
+                  }, 550);
+               }
+
+               setInterval(updateRandomImage, 8000);
+
+               currentImage = Math.floor(Math.random() * 4) + 1;
+               updateRandomImage();
+            </script>
             <div class="welcome">
                <p>
                   Hello, I'm Serena. Nice to Meet you! <br>
