@@ -15,66 +15,122 @@
 <body>
    <div class="overlay">
       <div class="container">
-         <div class="row">
-            <div class="glitch-container">
-               <img src="" width="195px" height="195px" class="image-container" id="image">
+         <div class="content" id="content">
+            <div class="row">
+               <!-- Botão para abrir o modal -->
+               <!-- <button class="open-modal-btn" onclick="openModal()">Abrir Modal</button> -->
+
+               <div class="glitch-container">
+                  <img src="" width="195px" height="195px" class="image-container" id="image">
+               </div>
+
+               <script>
+                  let currentImage;
+                  const imageElement = document.getElementById('image')
+
+                  function updateRandomImage() {
+                     let newImage;
+
+                     do {
+                        newImage = Math.floor(Math.random() * 4) + 1;
+                     } while (newImage === currentImage);
+
+                     currentImage = newImage;
+
+                     const imageElement = document.getElementById('image');
+                     imageElement.src = `images/${currentImage}.png`;
+                     imageElement.classList.add('glitch');
+
+                     setTimeout(() => {
+                        imageElement.classList.remove('glitch');
+                     }, 600);
+                  }
+
+                  setInterval(updateRandomImage, 8000);
+
+                  currentImage = Math.floor(Math.random() * 4) + 1;
+                  updateRandomImage();
+               </script>
+               <div class="welcome">
+                  <p>
+                     Hello, I'm Serena. Nice to Meet you! <br>
+                     こんにちは、セレナです。 はじめまして！
+                  </p>
+                  <br>
+                  <p>
+                     Please see the rules. <br>
+                     ルールをご覧ください.<br>
+                     — — — — — — — — — — — — — — — — — —
+                  </p>
+               </div>
             </div>
+            <h2 class="name">セレナ - Serena</h2>
+            <p class="answer">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In finibus consectetur tempor.
+               Aenean dui diam, vehicula id lorem lobortis, ultricies fermentum massa. Vestibulum scelerisque eros nisl,
+               vitae condimentum est ultrices ut. Nulla libero mauris, maximus sed lectus sed, euismod suscipit libero.
+               Cras iaculis sem sit amet sem viverra malesuada.
+            </p>
 
-            <script>
-               let currentImage;
-               const imageElement = document.getElementById('image')
-
-               function updateRandomImage() {
-                  let newImage;
-
-                  do {
-                     newImage = Math.floor(Math.random() * 4) + 1;
-                  } while (newImage === currentImage);
-
-                  currentImage = newImage;
-
-                  const imageElement = document.getElementById('image');
-                  imageElement.src = `images/${currentImage}.png`;
-                  imageElement.classList.add('glitch');
-
-                  setTimeout(() => {
-                     imageElement.classList.remove('glitch');
-                  }, 550);
-               }
-
-               setInterval(updateRandomImage, 8000);
-
-               currentImage = Math.floor(Math.random() * 4) + 1;
-               updateRandomImage();
-            </script>
-            <div class="welcome">
-               <p>
-                  Hello, I'm Serena. Nice to Meet you! <br>
-                  こんにちは、セレナです。 はじめまして！
-               </p>
-               <br>
-               <p>
-                  Please see the rules. <br>
-                  ルールをご覧ください.<br>
-                  ----------------------------------------
-               </p>
-            </div>
+            <span style="color: #FFF; font-size:2.0em; margin-right: -10px;"> >> </span>
+            <span class="question">
+               <input class="custom-input" type="text" placeholder="placeholder here" id="inputField" />
+            </span>
          </div>
-         <h2 class="name">セレナ - Serena</h2>
-         <p class="answer">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In finibus consectetur tempor.
-            Aenean dui diam, vehicula id lorem lobortis, ultricies fermentum massa. Vestibulum scelerisque eros nisl,
-            vitae condimentum est ultrices ut. Nulla libero mauris, maximus sed lectus sed, euismod suscipit libero.
-            Cras iaculis sem sit amet sem viverra malesuada.
-         </p>
+         <!-- Modal -->
+         <div class="modal" id="modal">
+            <pre id="ascii" style="margin: -10px; display: block;">
+       _____ _   _ ______ ____             _   _ _____    _____  _    _ _      ______  _____ 
+      |_   _| \ | |  ____/ __ \      /\   | \ | |  __ \  |  __ \| |  | | |    |  ____|/ ____|
+        | | |  \| | |__ | |  | |    /  \  |  \| | |  | | | |__) | |  | | |    | |__  | (___  
+        | | | . ` |  __|| |  | |   / /\ \ | . ` | |  | | |  _  /| |  | | |    |  __|  \___ \ 
+       _| |_| |\  | |   | |__| |  / ____ \| |\  | |__| | | | \ \| |__| | |____| |____ ____) |
+      |_____|_| \_|_|    \____/  /_/    \_\_| \_|_____/  |_|  \_\\____/|______|______|_____/                                                                                                                                                                                                  
+            </pre>
+            <ol class="rules">
+               <li>O modelo foi criado utilizando GPT-2 Medium com fine-tuned.</li>
+               <li>O nome do bot é Serena. Ela possui uma personalizada tsundere(sarcástica e fria)</li>
+               <li>Pergunte a Serena coisas do cotidiano, exemplos:
+                  <ul>
+                     <li>"Como você está?"</li>
+                     <li>"Qual o significado da vida?"</li>
+                     <li>"Como está o tempo?"</li>
+                  </ul>
+               </li>
+               <li>Por algum motivo do destino, Serena não diz 'Oi', 'Olá', 'Hey' e etc. Acho que isso é algo dela, sei lá.</li>
+               <li>Às vezes ela pode ser bastante arrogante, mas é normal dela.</li>
+               <li>Criado por: Rodrigo Dalfré </li>
+               <li>Para sair daqui basta digitar 'sair' ou 'exit'</li>
+            </ol>
+            <!-- Botão para fechar o modal -->
+            <div style="margin-top: 15px;">
+               <span style="color: #FFF; font-size:2.0em; margin-right: -10px;"> >> </span>
+            <span class="question">
+               <input class="custom-input" type="text" placeholder="placeholder here" id="inputField" />
+            </span>
+            </div>
+            
+         </div>
 
-         <span style="color: #FFF; font-size:2.0em; margin-right: -10px;"> >> </span><span class="question">
-            <input type="text" placeholder="place holder here" type="submit">
-         </span>
+         <script>
+            const overlay = document.getElementById('content');
+            const modal = document.getElementById('modal')
+            const ascii = document.getElementById('ascii')
+            function openModal() {
+               overlay.style.animation = 'scan 5s ease-out forwards'
+               modal.style.animation = 'scan 5s ease-out forwards'
+               overlay.style.display = 'none';
+               ascii.style.display = 'block'
+               modal.style.display = 'block'
+            }
+
+            function closeModal() {
+               modal.style.animation = 'none'
+               overlay.style.display = 'block';
+               ascii.style.display = 'none'
+            }
+         </script>
       </div>
    </div>
-
-
-
    </div>
 
 </body>

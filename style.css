@@ -43,34 +43,6 @@ p {
 	background: #020000;
 }
 
-@keyframes scan {
-	0% {
-		opacity: 0;
-		clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
-	}
-	10% {
-		opacity: 1;
-		clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
-	}
-	20% {
-		opacity: 1;
-		clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
-	}
-	30% {
-		opacity: 1;
-		clip-path: polygon(0 0, 100% 0, 100% 25%, 0 25%);
-	}
-	50% {
-		opacity: 1;
-		clip-path: polygon(0 0, 100% 0, 100% 50%, 0 50%);
-	}
-	100% {
-		opacity: 1;
-		clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-  }
-  
-}
-
 .row {
 	display: flex;
 	flex-direction: row;
@@ -89,37 +61,28 @@ p {
 	font-size: 1.4em;
 	margin-left: 40px;
 	position: relative;
-	z-index: 1; /* Certifique-se de que os elementos com o efeito tenham um z-index maior que outros elementos */
+	z-index: 1;
 }
 
 .answer {
 	padding: 15px 0 20px 0;
-	line-height: 1.2em;
+	line-height: 1.3em;
 	margin: 30px 0;
 }
 
-.question {
-	margin: 10px 0;
-	color: #ffffff;
-	padding: 15px 0;
-	display: inline-flex;
-	font-size: 2.0em;
-}
-
-.question input {
-	border: 1px solid #020000;
-	width: 250px;
-	color: #fff;
-	background: #020000;
-	vertical-align: top;
+.content{
+	display:block;
 }
 
 .question:before {
+	vertical-align: top;
 	color: #0081d6;
-	content: '['
+	content: '[';
+	margin-right: 5px;
 }
 
 .question:after {
+	vertical-align: top;
 	color: #0081d6;
 	content: ']'
 }
@@ -130,7 +93,6 @@ p {
 	top: 30px;
 	left: 35px;
 }
-
 
 .overlay:before {
 	background: linear-gradient(#0e0e0e 50%, rgba(16, 16, 16, 0.2) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.03));
@@ -143,8 +105,9 @@ p {
 	bottom: 0;
 	left: 0;
 	z-index: 2;
-	pointer-events: none; /* Permite que eventos do mouse ignorem a sobreposição */
+	pointer-events: none;
 }
+
 .overlay:after {
 	background: rgba(16, 16, 16, 0.2);
 	content: "";
@@ -173,30 +136,148 @@ p {
 	animation: noise .4s linear infinite;
 }
 
+.question {
+	margin: 10px 0;
+	color: #ffffff;
+	padding: 15px 0;
+	display: inline-flex;
+	font-size: 2.0em;
+}
+
+.question input {
+	border: none;
+	outline: none;
+	width: 250px;
+	color: #fff;
+	padding: 0;
+	background: #020000;
+	vertical-align: top;
+}
+
+.modal {
+	margin: 5px;
+	padding: 10px;
+	display: none;
+	flex-direction: column;
+	width: 70%;
+	height: 95vh;
+	position: relative;
+	overflow: hidden;
+	animation: scan 5s ease-out forwards;
+}
+
+/* Estilo do botão para abrir o modal */
+.open-modal-btn {
+	cursor: pointer;
+	padding: 10px 20px;
+	background-color: #3498db;
+	color: #fff;
+	border: none;
+	border-radius: 3px;
+}
+
+.rules {
+	margin-top: 10px;
+	line-height:120%;
+	font-size: 1.9em;
+	border: 1px solid red;
+}
+
+ol, li{
+	border: 1px solid blue;
+	margin-left: 10px;
+	padding-left: 10px;
+}
+
+li::marker {
+	color: #FFF; /* Defina a cor desejada para o list-style aqui */
+}
+
+ul {
+	list-style-type: disc;
+}
+
 @keyframes glitch-animation {
 	0% {
 		transform: translate(0);
-  }
-  25% {
+	}
+
+	25% {
 		transform: translate(-2px, 2px);
-  }
-  50% {
+	}
+
+	50% {
 		transform: translate(2px, -2px);
-  }
-  75% {
+	}
+
+	75% {
 		transform: translate(-2px, 2px);
-  }
-  100% {
+	}
+
+	100% {
 		transform: translate(0);
-  }
+	}
+}
+
+@keyframes scan {
+	0% {
+		opacity: 0;
+		clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+	}
+
+	10% {
+		opacity: 1;
+		clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+	}
+
+	20% {
+		opacity: 1;
+		clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+	}
+
+	30% {
+		opacity: 1;
+		clip-path: polygon(0 0, 100% 0, 100% 25%, 0 25%);
+	}
+
+	50% {
+		opacity: 1;
+		clip-path: polygon(0 0, 100% 0, 100% 50%, 0 50%);
+	}
+
+	100% {
+		opacity: 1;
+		clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+	}
+
 }
 
 @keyframes noise {
-	0%, 20%, 40%, 60%, 70%, 90% {opacity: 0;}
-	10% {opacity: .1;}
-	50% {opacity: .5; left: 6px;}
-	80% {opacity: .3;}
-	100% {opacity: .6; left: -2px;}
- }
 
+	0%,
+	20%,
+	40%,
+	60%,
+	70%,
+	90% {
+		opacity: 0;
+	}
 
+	10% {
+		opacity: .1;
+	}
+
+	50% {
+		opacity: .5;
+		left: 6px;
+	}
+
+	80% {
+		opacity: .3;
+	}
+
+	100% {
+		opacity: .6;
+		left: -2px;
+	}
+}
