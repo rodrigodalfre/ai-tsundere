@@ -18,7 +18,7 @@
          <div class="content" id="content">
             <div class="row">
                <!-- Botão para abrir o modal -->
-               <!-- <button class="open-modal-btn" onclick="openModal()">Abrir Modal</button> -->
+               <button class="open-modal-btn" onclick="openModal()">Abrir Modal</button>
 
                <div class="glitch-container">
                   <img src="" width="195px" height="195px" class="image-container" id="image">
@@ -78,7 +78,7 @@
          </div>
          <!-- Modal -->
          <div class="modal" id="modal">
-            <pre id="ascii" style="margin: -10px; display: block;">
+            <pre id="ascii" style="margin: -10px; display: block; font-size: 15px">
        _____ _   _ ______ ____             _   _ _____    _____  _    _ _      ______  _____ 
       |_   _| \ | |  ____/ __ \      /\   | \ | |  __ \  |  __ \| |  | | |    |  ____|/ ____|
         | | |  \| | |__ | |  | |    /  \  |  \| | |  | | | |__) | |  | | |    | |__  | (___  
@@ -86,9 +86,30 @@
        _| |_| |\  | |   | |__| |  / ____ \| |\  | |__| | | | \ \| |__| | |____| |____ ____) |
       |_____|_| \_|_|    \____/  /_/    \_\_| \_|_____/  |_|  \_\\____/|______|______|_____/                                                                                                                                                                                                  
             </pre>
-            <ol class="rules">
-               <li>O modelo foi criado utilizando GPT-2 Medium com fine-tuned.</li>
-               <li>O nome do bot é Serena. Ela possui uma personalizada tsundere(sarcástica e fria)</li>
+            <!-- <button onclick="toggleLanguage()">Toggle Language</button> -->
+            <ol class="rules" id="rulesEN" style="display:none;">
+               <li>To change the language click here: BR</li>
+               <li>The model was created using GPT-2 Medium with fine-tuning.</li>
+               <li>The bot's name is Serena. She has a custom tsundere (sarcastic and cold) personality.</li>
+               <li>Ask Serena everyday things, examples:
+                  <ul>
+                     <li>"How are you?"</li>
+                     <li>"What is the meaning of life?"</li>
+                     <li>"How is the weather?"</li>
+                  </ul>
+               </li>
+               <li>For some reason, Serena doesn't say 'Hi', 'Hello', 'Hey', etc. I think it's just her thing.</li>
+               <li>Sometimes she can be quite arrogant, but that's normal for her.</li>
+               <li>Created by: Rodrigo Dalfré</li>
+               <li>To exit, just type 'exit' or 'quit'</li>
+            </ol>
+
+            <ol class="rules" id="rulesBR" style="display:block;">
+               <li>Para mudar a linguagem clique aqui:<span class="events"> >> EN << </span>
+               </li>
+               <li>O modelo foi criado utilizando <a href="http://huggingface.co/openai-community/gpt2-medium"> GPT-2
+                     Medium </a>com fine-tuned.</li>
+               <li>O nome do bot é Serena. Ela possui uma personalidade tsundere (sarcastica e fria).</li>
                <li>Pergunte a Serena coisas do cotidiano, exemplos:
                   <ul>
                      <li>"Como você está?"</li>
@@ -96,19 +117,76 @@
                      <li>"Como está o tempo?"</li>
                   </ul>
                </li>
-               <li>Por algum motivo do destino, Serena não diz 'Oi', 'Olá', 'Hey' e etc. Acho que isso é algo dela, sei lá.</li>
+               <li>Por algum motivo do destino, Serena não diz 'Oi', 'Olá', 'Hey' e etc. Acho que isso é algo dela, sei
+                  lá.</li>
                <li>Às vezes ela pode ser bastante arrogante, mas é normal dela.</li>
-               <li>Criado por: Rodrigo Dalfré </li>
-               <li>Para sair daqui basta digitar 'sair' ou 'exit'</li>
+               <li>Criado por: <a href="http://github.com/rodrigodalfre"> Rodrigo Dalfré Tesser</a></li>
+               <li>Para sair daqui basta digitar <span class="events">'sair'</span> ou <span
+                     class="events">'exit'</span></li>
             </ol>
+
+            <script>
+               function toggleLanguage() {
+
+                  const rulesEN = document.getElementById('rulesEN');
+                  const rulesBR = document.getElementById('rulesBR');
+                  const modal = document.getElementById('modal');
+
+                  // Oculta o modal durante a troca de idioma
+                  modal.style.display = 'none';
+
+                  if (rulesEN.style.display === 'none') {
+                     rulesEN.style.display = 'block';
+                     rulesBR.style.display = 'none';
+                  } else {
+                     rulesEN.style.display = 'none';
+                     rulesBR.style.display = 'block';
+                  }
+
+                  setTimeout(() => {
+                     modal.classList.remove('scan-animation');
+                     void modal.offsetWidth; // Trigger reflow
+                     modal.classList.add('scan-animation');
+
+                     modal.style.display = 'block';
+                  }, 10);
+               }
+            </script>
             <!-- Botão para fechar o modal -->
             <div style="margin-top: 15px;">
                <span style="color: #FFF; font-size:2.0em; margin-right: -10px;"> >> </span>
-            <span class="question">
-               <input class="custom-input" type="text" placeholder="placeholder here" id="inputField" />
-            </span>
+               <span class="question">
+                  <form id="exitForm">
+                     <input class="custom-input" type="text" type="text" placeholder="placeholder here"
+                        id="exitInput" />
+                  </form>
+               </span>
             </div>
-            
+
+            <script>
+               document.getElementById("exitForm").addEventListener("submit", function (event) {
+                  event.preventDefault(); // Impede o envio padrão do formulário
+
+                  // Obter o valor do campo de input
+                  const exitValue = document.getElementById("exitInput").value;
+
+                  // Verificar se o valor é 'exit' ou 'sair'
+                  if (exitValue.toLowerCase() === 'exit' || exitValue.toLowerCase() === 'sair') {
+                     // Ação desejada para o caso de 'exit' ou 'sair'
+                     console.log("Resposta do formulário válida: ", exitValue);
+
+                     // Limpar o campo de input se necessário
+                     document.getElementById("exitInput").value = "";
+                  } else {
+                     // Ação para valores inválidos (opcional)
+                     console.log("Resposta do formulário inválida: ", exitValue);
+                  }
+               });
+
+
+
+            </script>
+
          </div>
 
          <script>
