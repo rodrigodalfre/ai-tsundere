@@ -156,7 +156,7 @@ p {
 
 .modal {
 	margin: 2px;
-	padding: 10px;
+	padding: 0 10px;
 	display: none;
 	flex-direction: column;
 	width: 70%;
@@ -166,7 +166,7 @@ p {
 	animation: scan 5s ease-out forwards;
 }
 
-/* Estilo do botão para abrir o modal */
+
 .open-modal-btn {
 	cursor: pointer;
 	padding: 10px 20px;
@@ -180,17 +180,15 @@ p {
 	margin-top: 10px;
 	line-height:125%;
 	font-size: 1.8em;
-	border: 1px solid red;
 }
 
 ol, li{
-	border: 1px solid blue;
 	margin-left: 10px;
 	padding-left: 10px;
 }
 
 li::marker {
-	color: #FFF; /* Defina a cor desejada para o list-style aqui */
+	color: #FFF;
 }
 
 ul {

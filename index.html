@@ -17,8 +17,6 @@
       <div class="container">
          <div class="content" id="content">
             <div class="row">
-               <!-- Botão para abrir o modal -->
-               <button class="open-modal-btn" onclick="openModal()">Abrir Modal</button>
 
                <div class="glitch-container">
                   <img src="" width="195px" height="195px" class="image-container" id="image">
@@ -58,8 +56,8 @@
                   </p>
                   <br>
                   <p>
-                     Please see the rules. <br>
-                     ルールをご覧ください.<br>
+                     Please see the <span class="events" onclick="openModal()">rules</span> for more <span class="events" onclick="openModal()">information</span>. <br>
+                     <span class="events" onclick="openModal()">詳しく</span>は<span class="events" onclick="openModal()">ルール</span>をご覧ください<br>
                      — — — — — — — — — — — — — — — — — —
                   </p>
                </div>
@@ -71,14 +69,16 @@
                Cras iaculis sem sit amet sem viverra malesuada.
             </p>
 
+            
             <span style="color: #FFF; font-size:2.0em; margin-right: -10px;"> >> </span>
-            <span class="question">
-               <input class="custom-input" type="text" placeholder="placeholder here" id="inputField" />
-            </span>
+            <form class="question">
+               <input class="custom-input" type="text" placeholder="type something..." id="inputField" />
+            </form>
+
          </div>
          <!-- Modal -->
          <div class="modal" id="modal">
-            <pre id="ascii" style="margin: -10px; display: block; font-size: 15px">
+            <pre id="ascii" style="margin: -10px; display: block; font-size: 15px;">
        _____ _   _ ______ ____             _   _ _____    _____  _    _ _      ______  _____ 
       |_   _| \ | |  ____/ __ \      /\   | \ | |  __ \  |  __ \| |  | | |    |  ____|/ ____|
         | | |  \| | |__ | |  | |    /  \  |  \| | |  | | | |__) | |  | | |    | |__  | (___  
@@ -86,26 +86,27 @@
        _| |_| |\  | |   | |__| |  / ____ \| |\  | |__| | | | \ \| |__| | |____| |____ ____) |
       |_____|_| \_|_|    \____/  /_/    \_\_| \_|_____/  |_|  \_\\____/|______|______|_____/                                                                                                                                                                                                  
             </pre>
-            <!-- <button onclick="toggleLanguage()">Toggle Language</button> -->
-            <ol class="rules" id="rulesEN" style="display:none;">
-               <li>To change the language click here: BR</li>
-               <li>The model was created using GPT-2 Medium with fine-tuning.</li>
-               <li>The bot's name is Serena. She has a custom tsundere (sarcastic and cold) personality.</li>
-               <li>Ask Serena everyday things, examples:
-                  <ul>
-                     <li>"How are you?"</li>
-                     <li>"What is the meaning of life?"</li>
-                     <li>"How is the weather?"</li>
-                  </ul>
-               </li>
-               <li>For some reason, Serena doesn't say 'Hi', 'Hello', 'Hey', etc. I think it's just her thing.</li>
-               <li>Sometimes she can be quite arrogant, but that's normal for her.</li>
-               <li>Created by: Rodrigo Dalfré</li>
-               <li>To exit, just type 'exit' or 'quit'</li>
-            </ol>
 
-            <ol class="rules" id="rulesBR" style="display:block;">
-               <li>Para mudar a linguagem clique aqui:<span class="events"> >> EN << </span>
+            <ol class="rules" id="rulesEN" style="display:none">
+               <li>To change the language, click here: <span class="events" onclick="toggleLanguage()"> >> BR << </span></li>
+               <li>The model was created using <a href="http://huggingface.co/openai-community/gpt2-medium"> GPT-2 Medium </a> with fine-tuning.</li>
+               <li>The bot's name is Serena. She has a tsundere personality (sarcastic and cold).</li>
+               <li>Ask Serena everyday things, for example:
+                   <ul>
+                       <li>"How are you?"</li>
+                       <li>"What is the meaning of life?"</li>
+                       <li>"How is the weather?"</li>
+                   </ul>
+               </li>
+               <li>Serena only knows <span class="events">English</span>; you can try other languages, but she will ignore them.</li>
+               <li>For some reason of destiny, Serena doesn't say 'Hi', 'Hello', 'Hey', etc. I guess that's just her thing, who knows.</li>
+               <li>Sometimes she can be quite arrogant, but that's normal for her.</li>
+               <li>Created by: <a href="http://github.com/rodrigodalfre">Rodrigo Dalfré Tesser</a></li>
+               <li>To exit, just type <span class="events">'sair'</span> or <span class="events">'exit'</span></li>
+           </ol>
+
+            <ol class="rules" id="rulesBR" style="display:none;">
+               <li>Para mudar a linguagem clique aqui:<span class="events" onclick="toggleLanguage()"> >> EN << </span>
                </li>
                <li>O modelo foi criado utilizando <a href="http://huggingface.co/openai-community/gpt2-medium"> GPT-2
                      Medium </a>com fine-tuned.</li>
@@ -117,6 +118,7 @@
                      <li>"Como está o tempo?"</li>
                   </ul>
                </li>
+               <li>Serena apenas sabe <span class ="events">inglês</span>; você pode tentar outras línguas, mas ela vai ignorar.</li>
                <li>Por algum motivo do destino, Serena não diz 'Oi', 'Olá', 'Hey' e etc. Acho que isso é algo dela, sei
                   lá.</li>
                <li>Às vezes ela pode ser bastante arrogante, mas é normal dela.</li>
@@ -153,58 +155,63 @@
                }
             </script>
             <!-- Botão para fechar o modal -->
-            <div style="margin-top: 15px;">
+            <div style="margin-top: 15px; display: none;" id="formInput">
                <span style="color: #FFF; font-size:2.0em; margin-right: -10px;"> >> </span>
                <span class="question">
-                  <form id="exitForm">
-                     <input class="custom-input" type="text" type="text" placeholder="placeholder here"
-                        id="exitInput" />
+                  <form id="exitForm" style="display: none;">
+                     <input class="custom-input" type="text" type="text" placeholder="type something..."
+                        id="exitInput" style="display: none;"/>
                   </form>
                </span>
             </div>
 
             <script>
                document.getElementById("exitForm").addEventListener("submit", function (event) {
-                  event.preventDefault(); // Impede o envio padrão do formulário
+                  event.preventDefault(); 
 
-                  // Obter o valor do campo de input
                   const exitValue = document.getElementById("exitInput").value;
 
-                  // Verificar se o valor é 'exit' ou 'sair'
                   if (exitValue.toLowerCase() === 'exit' || exitValue.toLowerCase() === 'sair') {
-                     // Ação desejada para o caso de 'exit' ou 'sair'
-                     console.log("Resposta do formulário válida: ", exitValue);
-
-                     // Limpar o campo de input se necessário
-                     document.getElementById("exitInput").value = "";
-                  } else {
-                     // Ação para valores inválidos (opcional)
-                     console.log("Resposta do formulário inválida: ", exitValue);
+                     closeModal()
                   }
+                  document.getElementById("exitInput").value = "";
                });
-
-
 
             </script>
 
          </div>
 
          <script>
+            const exitForm = document.getElementById("exitForm")
+            const rulesBR = document.getElementById('rulesBR');
+            const rulesEN = document.getElementById('rulesEN');
             const overlay = document.getElementById('content');
             const modal = document.getElementById('modal')
             const ascii = document.getElementById('ascii')
+            const exitInput = document.getElementById("exitInput")
+            const formInput = document.getElementById('formInput')
+
             function openModal() {
                overlay.style.animation = 'scan 5s ease-out forwards'
                modal.style.animation = 'scan 5s ease-out forwards'
                overlay.style.display = 'none';
                ascii.style.display = 'block'
                modal.style.display = 'block'
+               rulesBR.style.display = 'block';
+               exitForm.style.display = 'block';
+               exitInput.style.display = 'block';
+               formInput.style.display = 'block'
             }
 
             function closeModal() {
                modal.style.animation = 'none'
                overlay.style.display = 'block';
                ascii.style.display = 'none'
+               rulesBR.style.display = 'none';
+               rulesEN.style.display = 'none';
+               exitForm.style.display = 'none'
+               exitInput.style.display = 'none';
+               formInput.style.display = 'none'
             }
          </script>
       </div>
