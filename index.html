@@ -18,9 +18,7 @@
          <div class="content" id="content">
             <div class="row">
 
-               <div class="glitch-container">
-                  <img src="" width="195px" height="195px" class="image-container" id="image">
-               </div>
+                  <img src="" class="image-container" id="image">
 
                <script>
                   let currentImage;
@@ -63,17 +61,21 @@
                </div>
             </div>
             <h2 class="name">セレナ - Serena</h2>
-            <p class="answer">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In finibus consectetur tempor.
-               Aenean dui diam, vehicula id lorem lobortis, ultricies fermentum massa. Vestibulum scelerisque eros nisl,
-               vitae condimentum est ultrices ut. Nulla libero mauris, maximus sed lectus sed, euismod suscipit libero.
-               Cras iaculis sem sit amet sem viverra malesuada.
+            <p class="answer">
             </p>
-
             
             <span style="color: #FFF; font-size:2.0em; margin-right: -10px;"> >> </span>
-            <form class="question">
+            <form class="question" id="question">
                <input class="custom-input" type="text" placeholder="type something..." id="inputField" />
             </form>
+
+            <script>
+               document.getElementById('question').addEventListener('submit', (e) => {
+                  e.preventDefault()
+
+                  document.getElementById("inputField").value = "";
+               })
+            </script>
 
          </div>
          <!-- Modal -->

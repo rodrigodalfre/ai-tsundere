@@ -30,11 +30,10 @@ p {
 }
 
 .container {
-	margin: 5px;
-	padding: 10px;
+	padding: 5px;
 	display: block;
 	flex-direction: column;
-	width: 70%;
+	width: 1000px;
 	height: 95vh;
 	position: relative;
 	overflow: hidden;
@@ -45,19 +44,26 @@ p {
 
 .row {
 	display: flex;
-	flex-direction: row;
+	width: 900px;
+	height: 210px;
 	padding: 0 20px;
 }
 
 .welcome {
-	margin: -25px 40px;
+	margin: 0px 30px;
 	padding: 10px 0;
-	align-self: flex-end;
-	vertical-align: bottom;
+	width: 520px;
+}
+
+.image-container {
+	transition: opacity 1s ease-in-out, transform 0.1s ease-in-out;
+	width: 200px;
+	height: 200px;
+	margin-top: 10px;
 }
 
 .name {
-	display: inline-block;
+	display: block;
 	font-size: 1.4em;
 	margin-left: 40px;
 	position: relative;
@@ -67,11 +73,15 @@ p {
 .answer {
 	padding: 15px 0 20px 0;
 	line-height: 1.3em;
+	display: block;
 	margin: 30px 0;
+	height: 225px;
+	border: 1px solid red;
 }
 
 .content{
 	display:block;
+	width: 720px;
 }
 
 .question:before {
@@ -119,16 +129,6 @@ p {
 	bottom: 0;
 	left: 0;
 	z-index: 2;
-}
-
-.glitch-container {
-	overflow: hidden;
-	position: relative;
-	display: inline-block;
-}
-
-.image-container {
-	transition: opacity 1s ease-in-out, transform 0.1s ease-in-out;
 }
 
 .glitch {

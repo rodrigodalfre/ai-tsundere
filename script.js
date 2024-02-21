@@ -1,7 +1,8 @@
-const url = 'https://0a3a-34-83-135-226.ngrok-free.app/ask';
+const uri = 'https://340e-34-125-87-236.ngrok-free.app';
+const url = `${uri}/ask`
 const question = 'What do you like to do in free time?';
 
-const fetchData = async () => {
+const fetchData = async (question) => {
   try {
     const data = new URLSearchParams();
     data.append('question', question);
@@ -21,13 +22,14 @@ const fetchData = async () => {
     }
 
     const responseData = await response.json();
-    console.log('Resposta do servidor:', responseData.response);
+    console.log('Resposta :', responseData[1].response);
+    console.log('Resposta', responseData[0].response)
     // Faça algo com a resposta aqui
   } catch (error) {
     console.error('Erro:', error);
     console.error('Detalhes do erro:', error.message);
   }
+  return responseData
 };
 
-// Chamar a função assíncrona
 fetchData();
