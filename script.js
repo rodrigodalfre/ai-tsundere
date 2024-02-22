@@ -1,5 +1,5 @@
-const uri = 'https://340e-34-125-87-236.ngrok-free.app';
-const url = `${uri}/ask`
+const uri = 'https://d5c8-34-118-241-146.ngrok-free.app/';
+const url = `${uri}ask`
 const question = 'What do you like to do in free time?';
 
 const fetchData = async (question) => {
@@ -22,14 +22,49 @@ const fetchData = async (question) => {
     }
 
     const responseData = await response.json();
-    console.log('Resposta :', responseData[1].response);
-    console.log('Resposta', responseData[0].response)
-    // Faça algo com a resposta aqui
+    animateText(responseData)
+
   } catch (error) {
     console.error('Erro:', error);
     console.error('Detalhes do erro:', error.message);
   }
-  return responseData
 };
 
-fetchData();
+function animateText(answer) {
+  let japanese = document.getElementById('japanese')
+  let english = document.getElementById('english')
+
+  let answerEN = answer[0].response
+  let answerJP = answer[1].response
+  
+  let maxLength = Math.max(answerJP.length, answerEN.length)
+
+  japanese.innerHTML = ''
+  english.innerHTML = ''
+
+  stopLoadingAnimation()
+  for (let i = 0; i < maxLength; i++) {
+    (function (index) {
+      setTimeout(() => {
+        japanese.innerHTML += answerJP[index] || '';
+        english.innerHTML += answerEN[index] || '';
+      }, 100 * index); 
+    })(i);
+  }
+}
+
+function startLoadingAnimation() {
+  const loadingAnimation = document.getElementById('loadingAnimation');
+  loadingAnimation.innerHTML = '';
+  for (let i = 0; i < 3; i++) {
+    const dot = document.createElement('span');
+    dot.className = 'dot';
+    dot.textContent = '.';
+    loadingAnimation.appendChild(dot);
+  }
+}
+
+function stopLoadingAnimation() {
+  const loadingAnimation = document.getElementById('loadingAnimation');
+  loadingAnimation.innerHTML = '';
+}

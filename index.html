@@ -18,7 +18,7 @@
          <div class="content" id="content">
             <div class="row">
 
-                  <img src="" class="image-container" id="image">
+               <img src="" class="image-container" id="image">
 
                <script>
                   let currentImage;
@@ -54,16 +54,45 @@
                   </p>
                   <br>
                   <p>
-                     Please see the <span class="events" onclick="openModal()">rules</span> for more <span class="events" onclick="openModal()">information</span>. <br>
-                     <span class="events" onclick="openModal()">詳しく</span>は<span class="events" onclick="openModal()">ルール</span>をご覧ください<br>
+                     Please see the <span class="events" onclick="openModal()">rules</span> for more <span
+                        class="events" onclick="openModal()">information</span>. <br>
+                     <span class="events" onclick="openModal()">詳しく</span>は<span class="events"
+                        onclick="openModal()">ルール</span>をご覧ください<br>
                      — — — — — — — — — — — — — — — — — —
                   </p>
                </div>
             </div>
             <h2 class="name">セレナ - Serena</h2>
-            <p class="answer">
-            </p>
-            
+            <div class="answer">
+               <span id="english" class="answerEN"></span>
+               <br>
+               <div id="loadingAnimation"></div>
+               <span id="japanese" class="answerJP"></span>
+            </div>
+
+            <script>
+               const english = document.getElementById('english')
+               const japanese = document.getElementById('japanese')
+
+               const randomEN = [
+                  "you have finally arrived. i hope your question is up to my precious time.",
+                  "ah, hello curious. What do you want to know now? not that I care much...",
+                  "oh, an intruder in my kingdom of sarcasm. what else do you have to challenge me today?"
+               ]
+
+               const randomJP = [
+                  "ついに到着しましたね。 私の貴重な時間を使ってあなたの質問が終わることを願っています",
+                  "ああ、こんにちは、好奇心旺盛です。 今知りたいことは何ですか? あまり気にしているわけではないのですが…",
+                  "ああ、私の皮肉の王国への侵入者だ。 今日は他に何か私に挑戦しなければならないことがありますか？"
+               ]
+
+               let randomSentence = Math.floor(Math.random() * 3)
+
+               english.innerHTML = randomEN[randomSentence]
+               japanese.innerHTML = randomJP[randomSentence]
+
+            </script>
+
             <span style="color: #FFF; font-size:2.0em; margin-right: -10px;"> >> </span>
             <form class="question" id="question">
                <input class="custom-input" type="text" placeholder="type something..." id="inputField" />
@@ -71,9 +100,18 @@
 
             <script>
                document.getElementById('question').addEventListener('submit', (e) => {
-                  e.preventDefault()
+                  let japanese = document.getElementById('japanese')
+                  let english = document.getElementById('english')
 
-                  document.getElementById("inputField").value = "";
+                  japanese.innerHTML = ''
+                  english.innerHTML = ''
+                  e.preventDefault()
+                  const inputField = document.getElementById("inputField")
+
+                  startLoadingAnimation()
+                  fetchData(inputField.value);
+
+                  inputField.value = "";
                })
             </script>
 
@@ -90,27 +128,33 @@
             </pre>
 
             <ol class="rules" id="rulesEN" style="display:none">
-               <li>To change the language, click here: <span class="events" onclick="toggleLanguage()"> >> BR << </span></li>
-               <li>The model was created using <a href="http://huggingface.co/openai-community/gpt2-medium"> GPT-2 Medium </a> with fine-tuning.</li>
+               <li>To change the language, click here: <span class="events" onclick="toggleLanguage()"> >> BR << </span>
+               </li>
+               <li>The model was created using <a href="http://huggingface.co/openai-community/gpt2-medium"
+                     target="_blank"> GPT-2
+                     Medium </a> with fine-tuning.</li>
                <li>The bot's name is Serena. She has a tsundere personality (sarcastic and cold).</li>
                <li>Ask Serena everyday things, for example:
-                   <ul>
-                       <li>"How are you?"</li>
-                       <li>"What is the meaning of life?"</li>
-                       <li>"How is the weather?"</li>
-                   </ul>
+                  <ul>
+                     <li>"How are you?"</li>
+                     <li>"What is the meaning of life?"</li>
+                     <li>"How is the weather?"</li>
+                  </ul>
                </li>
-               <li>Serena only knows <span class="events">English</span>; you can try other languages, but she will ignore them.</li>
-               <li>For some reason of destiny, Serena doesn't say 'Hi', 'Hello', 'Hey', etc. I guess that's just her thing, who knows.</li>
+               <li>Serena only knows <span class="events">English</span>; you can try other languages, but she will
+                  ignore them.</li>
+               <li>For some reason of destiny, Serena doesn't say 'Hi', 'Hello', 'Hey', etc. I guess that's just her
+                  thing, who knows.</li>
                <li>Sometimes she can be quite arrogant, but that's normal for her.</li>
-               <li>Created by: <a href="http://github.com/rodrigodalfre">Rodrigo Dalfré Tesser</a></li>
+               <li>Created by: <a href="http://github.com/rodrigodalfre" target="_blank">Rodrigo Dalfré Tesser</a></li>
                <li>To exit, just type <span class="events">'sair'</span> or <span class="events">'exit'</span></li>
-           </ol>
+            </ol>
 
             <ol class="rules" id="rulesBR" style="display:none;">
                <li>Para mudar a linguagem clique aqui:<span class="events" onclick="toggleLanguage()"> >> EN << </span>
                </li>
-               <li>O modelo foi criado utilizando <a href="http://huggingface.co/openai-community/gpt2-medium"> GPT-2
+               <li>O modelo foi criado utilizando <a href="http://huggingface.co/openai-community/gpt2-medium"
+                     target="_blank"> GPT-2
                      Medium </a>com fine-tuned.</li>
                <li>O nome do bot é Serena. Ela possui uma personalidade tsundere (sarcastica e fria).</li>
                <li>Pergunte a Serena coisas do cotidiano, exemplos:
@@ -120,11 +164,12 @@
                      <li>"Como está o tempo?"</li>
                   </ul>
                </li>
-               <li>Serena apenas sabe <span class ="events">inglês</span>; você pode tentar outras línguas, mas ela vai ignorar.</li>
+               <li>Serena apenas sabe <span class="events">inglês</span>; você pode tentar outras línguas, mas ela vai
+                  ignorar.</li>
                <li>Por algum motivo do destino, Serena não diz 'Oi', 'Olá', 'Hey' e etc. Acho que isso é algo dela, sei
                   lá.</li>
                <li>Às vezes ela pode ser bastante arrogante, mas é normal dela.</li>
-               <li>Criado por: <a href="http://github.com/rodrigodalfre"> Rodrigo Dalfré Tesser</a></li>
+               <li>Criado por: <a href="http://github.com/rodrigodalfre" target="_blank"> Rodrigo Dalfré Tesser</a></li>
                <li>Para sair daqui basta digitar <span class="events">'sair'</span> ou <span
                      class="events">'exit'</span></li>
             </ol>
@@ -165,15 +210,15 @@
                "> >> </span>
                <span class="question">
                   <form id="exitForm" style="display: none;">
-                     <input type="text" type="text" placeholder="type something..."
-                        id="exitInput" style="display: none;"/>
+                     <input type="text" type="text" placeholder="type something..." id="exitInput"
+                        style="display: none;" />
                   </form>
                </span>
             </div>
 
             <script>
                document.getElementById("exitForm").addEventListener("submit", function (event) {
-                  event.preventDefault(); 
+                  event.preventDefault();
 
                   const exitValue = document.getElementById("exitInput").value;
 

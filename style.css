@@ -72,16 +72,35 @@ p {
 }
 
 .answer {
-	padding: 15px 0 20px 0;
-	line-height: 1.3em;
-	display: block;
-	margin: 30px 0;
-	height: 225px;
-	border: 1px solid red;
+	padding: 15px 0;
+	display: flex;
+	flex-direction: column;
+	align-items: left;
+	text-align: left;
+	height: 282px;
+	font-size: 1.75em;
 }
 
-.content{
-	display:block;
+.answerEN,
+.answerJP {
+	margin-bottom: 10px;
+}
+
+.animated-line {
+	animation: typing 21s steps(40, end);
+}
+
+@keyframes typing {
+	from {
+		 width: 0;
+	}
+	to {
+		 width: 100%;
+	}
+}
+
+.content {
+	display: block;
 	width: 720px;
 }
 
@@ -156,33 +175,33 @@ p {
 }
 
 .modal {
-	border: 1px solid red;
 	margin: 2px;
 	padding: 0 10px;
 	display: none;
 	flex-direction: column;
-	width: 800px;
+	width: 840px;
 	height: 94vh;
 	position: relative;
 	overflow: hidden;
 	animation: scan 5s ease-out forwards;
 }
 
-.ascii{
-	margin-left: 30px; 
+.ascii {
+	margin-left: 30px;
 	margin-top: 2px;
-	display: block; 
+	display: block;
 	font-size: 10px;
 }
 
 
 .rules {
 	margin-top: 10px;
-	line-height:125%;
+	line-height: 125%;
 	font-size: 1.7em;
 }
 
-ol, li{
+ol,
+li {
 	margin-left: 10px;
 	padding-left: 10px;
 }
@@ -200,10 +219,34 @@ ul {
 	cursor: pointer;
 }
 
-a, a:link, a:visited, a:hover, a:active{
-	color:white;
+a,
+a:link,
+a:visited,
+a:hover,
+a:active {
+	color: white;
 	text-decoration: none;
 }
+
+#loadingAnimation {
+	font-size: 36px;
+	align-items: left;
+	text-align: left;
+ }
+ 
+ .dot {
+	display: inline-block;
+	animation: bounce 1.5s infinite;
+ }
+
+ @keyframes bounce {
+	0%, 100% {
+	  transform: translateY(0);
+	}
+	50% {
+	  transform: translateY(-10px);
+	}
+ } 
 
 @keyframes glitch-animation {
 	0% {
