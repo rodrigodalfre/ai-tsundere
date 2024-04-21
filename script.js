@@ -1,4 +1,4 @@
-const uri = 'https://83bc-34-150-216-226.ngrok-free.app/';
+const uri = 'https://074c-34-106-84-254.ngrok-free.app/';
 const url = `${uri}ask`
 const question = 'What do you like to do in free time?';
 
